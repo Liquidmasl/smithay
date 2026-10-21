@@ -83,7 +83,14 @@ impl DrmDeviceFd {
         DrmDeviceFd(Arc::new(dev))
     }
 
-    pub(in crate::backend::drm) fn is_privileged(&self) -> bool {
+    /// Returns whether this descriptor explicitly acquired DRM master when it
+    /// was created.
+    ///
+    /// A false result does not mean the descriptor cannot modeset. Modern
+    /// logind/libseat sessions may receive KMS access without this legacy ioctl
+    /// succeeding; callers must use session activation and real KMS operations
+    /// to determine whether the device is usable.
+    pub fn is_privileged(&self) -> bool {
         self.0.privileged
     }
 
