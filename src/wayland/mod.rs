@@ -48,8 +48,10 @@
 //!
 
 pub mod alpha_modifier;
+pub mod tearing_control;
 pub mod background_effect;
 pub mod buffer;
+pub mod color;
 pub mod commit_timing;
 pub mod compositor;
 pub mod content_type;
